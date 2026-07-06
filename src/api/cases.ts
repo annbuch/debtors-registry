@@ -11,7 +11,7 @@ export async function getCases(body: CasesRequest) {
     return response.data;
 }
 
-export async function getCase(id: number) {
+export async function getCaseById(id: string) {
     const response = await api.get<DebtorResponse>(
         `/cases/${id}`
     );

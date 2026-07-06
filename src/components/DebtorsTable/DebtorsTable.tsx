@@ -47,7 +47,7 @@ export default function DebtorsTable() {
                                 <TableCell>
                                     <Link
                                         component={RouterLink}
-                                        to={`/debtors/:id`}
+                                        to={`/debtors/${item.id}`}
                                     >
                                         {
                                             item.debtorModel.organization.shortName
