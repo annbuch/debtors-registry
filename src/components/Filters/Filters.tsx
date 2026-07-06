@@ -11,7 +11,7 @@ export default function Filters() {
                 mb: 3,
             }}
         >
-            <Typography variant="h6" fontWeight={600}>
+            <Typography variant="h6" sx ={{ fontWeight: 600 }}>
                 Фильтры
             </Typography>
         </Paper>

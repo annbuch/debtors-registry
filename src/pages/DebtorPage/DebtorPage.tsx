@@ -1,7 +1,11 @@
-function DebtorPage() {
+import Layout from "../../components/Layout/Layout";
+
+export default function DebtorPage() {
     return (
-        <h1>Карточка должника</h1>
+        <Layout>
+
+            Страница должника
+
+        </Layout>
     );
 }
-
-export default DebtorPage;
