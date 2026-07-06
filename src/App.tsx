@@ -1,5 +1,7 @@
+import DebtorsPage from "./pages/DebtorsPage/DebtorsPage";
+
 function App() {
-  return <h1>Реестр должников</h1>;
+    return <DebtorsPage />;
 }
 
 export default App;
