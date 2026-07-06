@@ -1,5 +1,10 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { type CaseItem } from "../../types/case";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
+import { getCases } from "../api/cases";
+import { buildRequest } from "../utils/buildRequest";
+
+import type { CaseItem } from "../types/case";
+import type { RootState } from "./index";
 
 export interface CasesState {
     items: CaseItem[];
@@ -15,40 +20,56 @@ const initialState: CasesState = {
     error: null,
 };
 
+export const fetchCases = createAsyncThunk(
+    "cases/fetchCases",
+    async (_, { getState }) => {
+
+        const state = getState() as RootState;
+
+        const request = buildRequest(state.filters);
+
+        return await getCases(request);
+    }
+);
+
 const casesSlice = createSlice({
     name: "cases",
 
     initialState,
 
-    reducers: {
-        fetchStart(state) {
-            state.loading = true;
-            state.error = null;
-        },
+    reducers: {},
 
-        fetchSuccess(
-            state,
-            action: PayloadAction<{
-                items: CaseItem[];
-                total: number;
-            }>
-        ) {
-            state.loading = false;
-            state.items = action.payload.items;
-            state.total = action.payload.total;
-        },
+    extraReducers: builder => {
 
-        fetchError(state, action: PayloadAction<string>) {
-            state.loading = false;
-            state.error = action.payload;
-        },
+        builder
+
+            .addCase(fetchCases.pending, state => {
+
+                state.loading = true;
+                state.error = null;
+
+            })
+
+            .addCase(fetchCases.fulfilled, (state, action) => {
+
+                state.loading = false;
+
+                state.items = action.payload.items;
+
+                state.total = action.payload.count;
+
+            })
+
+            .addCase(fetchCases.rejected, state => {
+
+                state.loading = false;
+
+                state.error = "Не удалось загрузить данные";
+
+            });
+
     },
-});
 
-export const {
-    fetchStart,
-    fetchSuccess,
-    fetchError,
-} = casesSlice.actions;
+});
 
 export default casesSlice.reducer;

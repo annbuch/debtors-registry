@@ -75,18 +75,23 @@ const filtersSlice = createSlice({
         setFilters(state, action: PayloadAction<Partial<FiltersState>>) {
 
             Object.assign(state, action.payload);
+            state.page = 1;
 
         },
+        setPage(
 
+            state,
+
+            action: PayloadAction<number>
+
+        ) {
+
+            state.page = action.payload;
+
+        },
         resetFilters() {
 
             return initialState;
-
-        },
-
-        setPage(state, action: PayloadAction<number>) {
-
-            state.page = action.payload;
 
         },
 
@@ -97,10 +102,8 @@ const filtersSlice = createSlice({
 export const {
 
     setFilters,
-
-    resetFilters,
-
     setPage,
+    resetFilters,
 
 } = filtersSlice.actions;
 
