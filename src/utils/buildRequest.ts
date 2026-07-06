@@ -1,4 +1,4 @@
-import { type FiltersState } from "../store/filters/filtersSlice";
+import { type FiltersState } from "../store/filtersSlice";
 
 export function buildRequest(filters: FiltersState) {
     return {
