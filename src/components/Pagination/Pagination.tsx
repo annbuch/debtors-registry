@@ -27,6 +27,7 @@ export default function DebtorsPagination() {
                 <Typography> Всего страниц: {totalPages} </Typography>
             </Box>
             <Pagination
+                variant="outlined"
                 page={page}
                 count={totalPages}
                 color="primary"

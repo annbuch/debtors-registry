@@ -6,7 +6,6 @@ export interface Manager {
 
 export interface Organization {
     shortName: string;
-
     legalAddress: {
         region: number;
     };
@@ -19,21 +18,15 @@ export interface DebtorModel {
 
 export interface CaseItem {
     id: number;
-
     manager: Manager;
-
     debtorModel: DebtorModel;
-
     startDate: string;
-
     procedureType: number;
-
     status: number;
 }
 
 export interface CasesResponse {
     items: CaseItem[];
-
     count: number;
 }
 
@@ -49,15 +42,10 @@ export interface CasesRequest {
 
     filters: {
         number: string;
-
-        status: number | string;
-
+        status: number | null;
         declarantTypes: number[] | null;
-
         manager: string;
-
         procedure: string;
-
         start: {
             from: string | null;
             to: string | null;
@@ -70,11 +58,8 @@ export interface CasesRequest {
 
         debtor: {
             unp: string;
-
             name: string;
-
             region: string;
-
             type: string;
         };
     };

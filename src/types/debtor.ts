@@ -7,7 +7,6 @@ export interface DebtorResponse{
     }
 
     number:string;
-
     court:string;
 
 }

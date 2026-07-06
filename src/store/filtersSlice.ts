@@ -40,7 +40,9 @@ const filtersSlice = createSlice({
     reducers: {
         setFilters(state, action: PayloadAction<Partial<FiltersState>>) {
             Object.assign(state, action.payload);
-            state.page = 1;
+            if (action.payload.page === undefined) {
+                state.page = 1;
+            }
         },
         setPage(
             state,
